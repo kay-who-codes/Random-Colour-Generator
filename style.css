@@ -12,10 +12,12 @@ body {
     color: #333;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     height: 100vh;
     text-align: center;
     transition: background-color 0.3s, color 0.3s;
+    padding: 20px;
 }
 
 /* Dark Mode Styles */
@@ -24,17 +26,33 @@ body.dark-mode {
     color: #fff;
 }
 
-/* Container for Content */
+/* Main Container for Colour Generator */
 .container {
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    margin-bottom: 40px;
     transition: background-color 0.3s;
 }
 
 body.dark-mode .container {
+    background-color: #444;
+}
+
+/* Colour Compare Container */
+.colour-compare-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-bottom: 40px;
+    transition: background-color 0.3s;
+}
+
+body.dark-mode .colour-compare-container {
     background-color: #444;
 }
 
@@ -97,7 +115,6 @@ body.dark-mode button:hover {
 /* Theme Toggle Button Styles */
 .theme-toggle {
     margin-top: 60px;
-    margin-bottom: 60px; /* Adds space between the content and the button */
 }
 
 #theme-switcher {
@@ -126,11 +143,24 @@ body.dark-mode .toggle-label:hover {
     background-color: #444;
 }
 
-/* Adjusted for better visibility */
 body.dark-mode .colour-preview {
     background-color: #444;
 }
 
 body.dark-mode .container {
     background-color: #222;
+}
+
+/* Additional Styling for Colour Compare Container */
+.compare-preview {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.compare-preview div {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 10px;
 }
