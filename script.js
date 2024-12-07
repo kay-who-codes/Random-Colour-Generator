@@ -1,3 +1,4 @@
+// List of color names
 const colorNames = {
     '0,0,0': 'Black',
     '255,255,255': 'White',
@@ -12,7 +13,7 @@ const colorNames = {
     '255,192,203': 'Pink',
     '139,69,19': 'Brown',
     '128,0,128': 'Purple',
-    '0,255,0': 'Lime',
+    '0,128,0': 'Lime',
     '0,128,128': 'Teal',
     '128,128,0': 'Olive',
     '238,130,238': 'Violet',
@@ -53,17 +54,12 @@ function generateRandomColor() {
 
     // Update the colour preview and information
     document.getElementById('color-preview').style.backgroundColor = hex;
-    document.getElementById('hex-code').innerText = hex;
-    document.getElementById('rgb').innerText = `RGB(${r}, ${g}, ${b})`;
-    document.getElementById('color-name').innerText = colorName;
-
-    // Update the buttons' labels
     document.getElementById('copy-color-name').innerText = `Colour: ${colorName}`;
     document.getElementById('copy-hex').innerText = `Hex Code: ${hex}`;
-    document.getElementById('copy-rgb').innerText = `RGB: RGB(${r}, ${g}, ${b})`;
+    document.getElementById('copy-rgb').innerText = `RGB: ${rgb}`;
 
-    // Generate harmonious colours
-    generateHarmoniousColors(r, g, b);
+    // Generate and display harmonious colours
+    generateHarmoniousColors(hex);
 }
 
 // Convert RGB to Hex
@@ -73,12 +69,9 @@ function rgbToHex(r, g, b) {
 
 // Function to find the nearest colour name
 function getColorName(rgb) {
-    // If the exact RGB exists, return it
     if (colorNames[rgb]) {
         return colorNames[rgb];
     }
-
-    // Otherwise, find the closest match
     let closestMatch = 'Unknown Colour';
     let minDistance = Infinity;
 
@@ -93,33 +86,9 @@ function getColorName(rgb) {
     return closestMatch;
 }
 
-// Generate two harmonious colours based on the primary colour
-function generateHarmoniousColors(r, g, b) {
-    // Color harmony theory: For simplicity, we'll generate complementary and analogous colours.
-
-    // Complementary color (opposite on the colour wheel)
-    let compR = 255 - r;
-    let compG = 255 - g;
-    let compB = 255 - b;
-
-    // Analogous colors (side by side on the colour wheel)
-    let analogousR1 = (r + 30) % 256;
-    let analogousG1 = (g + 30) % 256;
-    let analogousB1 = (b + 30) % 256;
-
-    let analogousR2 = (r - 30 + 256) % 256;
-    let analogousG2 = (g - 30 + 256) % 256;
-    let analogousB2 = (b - 30 + 256) % 256;
-
-    // Set the harmonious colour previews
-    document.getElementById('harmonious-color-1').style.backgroundColor = rgbToHex(analogousR1, analogousG1, analogousB1);
-    document.getElementById('harmonious-color-2').style.backgroundColor = rgbToHex(analogousR2, analogousG2, analogousB2);
-    document.getElementById('compare-color-preview').style.backgroundColor = rgbToHex(compR, compG, compB);
-}
-
 // Copy text to clipboard
 function copyText(type) {
-    const text = document.getElementById(type).innerText;
+    const text = document.getElementById(type).innerText.split(': ')[1]; // Extracting the colour value
     navigator.clipboard.writeText(text).then(() => {
         alert('Copied to clipboard!');
     });
@@ -128,6 +97,33 @@ function copyText(type) {
 // Toggle between dark and light modes
 function toggleTheme() {
     document.body.classList.toggle('dark-mode');
+}
+
+// Function to generate harmonious colours
+function generateHarmoniousColors(hex) {
+    // Convert hex to RGB
+    const rgb = hexToRgb(hex);
+
+    // Generate complementary colours
+    const complementary1 = adjustColour(rgb, 20); // Shift hue slightly
+    const complementary2 = adjustColour(rgb, -20); // Shift hue slightly in opposite direction
+
+    // Set the harmonious colours in the compare preview
+    document.getElementById('harmonious-color-1').style.backgroundColor = rgbToHex(...complementary1);
+    document.getElementById('harmonious-color-2').style.backgroundColor = rgbToHex(...complementary2);
+}
+
+// Convert Hex to RGB
+function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return [r, g, b];
+}
+
+// Adjust colour by shifting RGB values (creating harmonious colours)
+function adjustColour(rgb, amount) {
+    return rgb.map(value => Math.min(Math.max(value + amount, 0), 255)); // Prevent out-of-bounds values
 }
 
 // Initialize with a random color
