@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 
+/* Body & Global Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -17,12 +18,13 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark Mode */
+/* Dark Mode Styles */
 body.dark-mode {
     background-color: #333;
     color: #fff;
 }
 
+/* Container for Content */
 .container {
     background-color: #fff;
     padding: 30px;
@@ -36,12 +38,14 @@ body.dark-mode .container {
     background-color: #444;
 }
 
+/* Title Styles */
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-.color-preview {
+/* Colour Preview Circle */
+.colour-preview {
     width: 150px;
     height: 150px;
     margin: 20px auto;
@@ -49,6 +53,7 @@ h1 {
     background-color: #ccc;
 }
 
+/* Button Styles */
 button {
     background-color: #4CAF50;
     color: white;
@@ -61,6 +66,7 @@ button {
     transition: background-color 0.3s;
 }
 
+/* Button Hover Effects */
 button:hover {
     background-color: #45a049;
 }
@@ -69,23 +75,7 @@ button:active {
     background-color: #388e3c;
 }
 
-#generate-color {
-    background-color: #005f8d;
-}
-
-#generate-color:hover {
-    background-color: #004c75;
-}
-
-.buttons button {
-    background-color: #2196F3;
-}
-
-.buttons button:hover {
-    background-color: #1976D2;
-}
-
-/* Dark Mode Buttons */
+/* Dark Mode Button Styles */
 body.dark-mode button {
     background-color: #555;
     color: #fff;
@@ -95,7 +85,25 @@ body.dark-mode button:hover {
     background-color: #666;
 }
 
-/* Theme Toggle */
+/* Specific Styles for "Generate Random Colour" Button */
+#generate-color {
+    background-color: #005f8d;
+}
+
+#generate-color:hover {
+    background-color: #004c75;
+}
+
+/* Styles for Buttons within the "buttons" container */
+.buttons button {
+    background-color: #2196F3;
+}
+
+.buttons button:hover {
+    background-color: #1976D2;
+}
+
+/* Theme Toggle Button Styles */
 .theme-toggle {
     margin-top: 60px;
 }
@@ -116,4 +124,13 @@ body.dark-mode button:hover {
 
 body.dark-mode .toggle-label {
     background-color: #888;
+}
+
+/* Adjusted for better visibility */
+body.dark-mode .colour-preview {
+    background-color: #444;
+}
+
+body.dark-mode .container {
+    background-color: #222;
 }
