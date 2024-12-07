@@ -1,53 +1,101 @@
 const colorNames = {
-    0: 'Black', 255: 'White', 255: 'Red', 0: 'Green', 0: 'Blue',
-    255: 'Yellow', 255: 'Magenta', 255: 'Cyan', 128: 'Gray',
-    255: 'Orange', 255: 'Pink', 255: 'Brown', 255: 'Purple',
-    255: 'Lime', 255: 'Teal', 128: 'Olive', 255: 'Violet',
-    128: 'Indigo', 0: 'Maroon', 255: 'Coral'
-    // Add as many colours as needed.
+    '0,0,0': 'Black',
+    '255,255,255': 'White',
+    '255,0,0': 'Red',
+    '0,255,0': 'Green',
+    '0,0,255': 'Blue',
+    '255,255,0': 'Yellow',
+    '255,0,255': 'Magenta',
+    '0,255,255': 'Cyan',
+    '128,128,128': 'Gray',
+    '255,165,0': 'Orange',
+    '255,192,203': 'Pink',
+    '139,69,19': 'Brown',
+    '128,0,128': 'Purple',
+    '0,255,0': 'Lime',
+    '0,128,128': 'Teal',
+    '128,128,0': 'Olive',
+    '238,130,238': 'Violet',
+    '75,0,130': 'Indigo',
+    '128,0,0': 'Maroon',
+    '255,127,80': 'Coral',
+    '64,224,208': 'Turquoise',
+    '245,245,220': 'Beige',
+    '0,0,128': 'Navy',
+    '255,215,0': 'Gold',
+    '192,192,192': 'Silver',
+    '221,160,221': 'Plum',
+    '54,69,79': 'Charcoal',
+    '255,218,185': 'Peach',
+    '230,230,250': 'Lavender',
+    '0,255,127': 'Emerald',
+    '210,180,140': 'Tan',
+    '189,252,201': 'Mint',
+    '220,20,60': 'Crimson',
+    '255,0,255': 'Fuchsia',
+    '70,130,180': 'Steel Blue',
+    '176,224,230': 'Powder Blue',
+    '0,139,139': 'Dark Cyan',
+    '255,99,71': 'Tomato',
+    '255,240,245': 'Snow',
+    '255,228,181': 'Papaya Whip'
 };
 
+// Function to generate a random colour
 function generateRandomColor() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
 
-    const hexColor = rgbToHex(r, g, b);
-    const colorName = getColorName(r, g, b);
+    let rgb = `${r},${g},${b}`;
+    let hex = rgbToHex(r, g, b);
+    let colorName = getColorName(rgb);
 
-    document.getElementById("color-preview").style.backgroundColor = hexColor;
-    document.getElementById("color-name").textContent = colorName;
-    document.getElementById("hex-code").textContent = hexColor;
-    document.getElementById("rgb").textContent = `rgb(${r}, ${g}, ${b})`;
+    // Update the colour preview and information
+    document.getElementById('color-preview').style.backgroundColor = hex;
+    document.getElementById('hex-code').innerText = hex;
+    document.getElementById('rgb').innerText = `RGB(${r}, ${g}, ${b})`;
+    document.getElementById('color-name').innerText = colorName;
 }
 
+// Convert RGB to Hex
 function rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase();
+    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
 }
 
-function getColorName(r, g, b) {
-    // In practice, we could use a full library, but this example uses a simple lookup.
-    return colorNames[r] || colorNames[g] || colorNames[b] || 'Unknown Colour';
-}
-
-function copyText(type) {
-    let textToCopy = '';
-    if (type === 'color-name') {
-        textToCopy = document.getElementById("color-name").textContent;
-    } else if (type === 'hex-code') {
-        textToCopy = document.getElementById("hex-code").textContent;
-    } else if (type === 'rgb') {
-        textToCopy = document.getElementById("rgb").textContent;
+// Function to find the nearest colour name
+function getColorName(rgb) {
+    // If the exact RGB exists, return it
+    if (colorNames[rgb]) {
+        return colorNames[rgb];
     }
+    // Otherwise, find the closest match
+    let closestMatch = 'Unknown Colour';
+    let minDistance = Infinity;
 
-    navigator.clipboard.writeText(textToCopy).then(() => {
-        alert("Copied to clipboard!");
-    }).catch(err => {
-        alert("Failed to copy text!");
+    for (let color in colorNames) {
+        let [r, g, b] = color.split(',').map(Number);
+        let distance = Math.sqrt(Math.pow(r - rgb.split(',')[0], 2) + Math.pow(g - rgb.split(',')[1], 2) + Math.pow(b - rgb.split(',')[2], 2));
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestMatch = colorNames[color];
+        }
+    }
+    return closestMatch;
+}
+
+// Copy text to clipboard
+function copyText(type) {
+    const text = document.getElementById(type).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
     });
 }
 
-// Dark Mode Toggle
+// Toggle between dark and light modes
 function toggleTheme() {
     document.body.classList.toggle('dark-mode');
 }
+
+// Initialize with a random color
+generateRandomColor();
