@@ -5,64 +5,45 @@
     box-sizing: border-box;
 }
 
-/* Body & Global Styles */
+/* Body Styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    height: 100vh;
+    align-items: center;
+    min-height: 100vh;
     text-align: center;
     transition: background-color 0.3s, color 0.3s;
-    padding: 20px;
 }
 
-/* Dark Mode Styles */
+/* Container Styling */
+.container, .colour-compare-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Dark Mode */
 body.dark-mode {
     background-color: #333;
     color: #fff;
 }
 
-/* Main Container for Colour Generator */
-.container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin-bottom: 40px;
-    transition: background-color 0.3s;
-}
-
-body.dark-mode .container {
+body.dark-mode .container, body.dark-mode .colour-compare-container {
     background-color: #444;
 }
 
-/* Colour Compare Container */
-.colour-compare-container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin-bottom: 40px;
-    transition: background-color 0.3s;
-}
-
-body.dark-mode .colour-compare-container {
-    background-color: #444;
-}
-
-/* Title Styles */
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-/* Colour Preview Circle */
 .colour-preview {
     width: 150px;
     height: 150px;
@@ -71,7 +52,6 @@ h1 {
     background-color: #ccc;
 }
 
-/* Button Styles */
 button {
     background-color: #4CAF50;
     color: white;
@@ -84,7 +64,6 @@ button {
     transition: background-color 0.3s;
 }
 
-/* Button Hover Effects */
 button:hover {
     background-color: #45a049;
 }
@@ -93,7 +72,6 @@ button:active {
     background-color: #388e3c;
 }
 
-/* Specific Styles for "Generate Random Colour" Button */
 #generate-color {
     background-color: #005f8d;
 }
@@ -102,7 +80,15 @@ button:active {
     background-color: #004c75;
 }
 
-/* Dark Mode Button Styles */
+.buttons button {
+    background-color: #2196F3;
+}
+
+.buttons button:hover {
+    background-color: #1976D2;
+}
+
+/* Dark Mode Buttons */
 body.dark-mode button {
     background-color: #555;
     color: #fff;
@@ -112,7 +98,7 @@ body.dark-mode button:hover {
     background-color: #666;
 }
 
-/* Theme Toggle Button Styles */
+/* Theme Toggle */
 .theme-toggle {
     margin-top: 60px;
 }
@@ -123,44 +109,14 @@ body.dark-mode button:hover {
 }
 
 .toggle-label {
-    background-color: transparent;
-    color: #333;
-    border: 2px solid #333;
+    background-color: #2196F3;
+    color: white;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
     font-size: 18px;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 body.dark-mode .toggle-label {
-    background-color: #333;
-    color: #fff;
-    border-color: #fff;
-}
-
-body.dark-mode .toggle-label:hover {
-    background-color: #444;
-}
-
-body.dark-mode .colour-preview {
-    background-color: #444;
-}
-
-body.dark-mode .container {
-    background-color: #222;
-}
-
-/* Additional Styling for Colour Compare Container */
-.compare-preview {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.compare-preview div {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin: 10px;
+    background-color: #888;
 }
