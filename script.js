@@ -56,6 +56,14 @@ function generateRandomColor() {
     document.getElementById('hex-code').innerText = hex;
     document.getElementById('rgb').innerText = `RGB(${r}, ${g}, ${b})`;
     document.getElementById('color-name').innerText = colorName;
+
+    // Update the buttons' labels
+    document.getElementById('copy-color-name').innerText = `Colour: ${colorName}`;
+    document.getElementById('copy-hex').innerText = `Hex Code: ${hex}`;
+    document.getElementById('copy-rgb').innerText = `RGB: RGB(${r}, ${g}, ${b})`;
+
+    // Generate harmonious colours
+    generateHarmoniousColors(r, g, b);
 }
 
 // Convert RGB to Hex
@@ -69,6 +77,7 @@ function getColorName(rgb) {
     if (colorNames[rgb]) {
         return colorNames[rgb];
     }
+
     // Otherwise, find the closest match
     let closestMatch = 'Unknown Colour';
     let minDistance = Infinity;
@@ -82,6 +91,30 @@ function getColorName(rgb) {
         }
     }
     return closestMatch;
+}
+
+// Generate two harmonious colours based on the primary colour
+function generateHarmoniousColors(r, g, b) {
+    // Color harmony theory: For simplicity, we'll generate complementary and analogous colours.
+
+    // Complementary color (opposite on the colour wheel)
+    let compR = 255 - r;
+    let compG = 255 - g;
+    let compB = 255 - b;
+
+    // Analogous colors (side by side on the colour wheel)
+    let analogousR1 = (r + 30) % 256;
+    let analogousG1 = (g + 30) % 256;
+    let analogousB1 = (b + 30) % 256;
+
+    let analogousR2 = (r - 30 + 256) % 256;
+    let analogousG2 = (g - 30 + 256) % 256;
+    let analogousB2 = (b - 30 + 256) % 256;
+
+    // Set the harmonious colour previews
+    document.getElementById('harmonious-color-1').style.backgroundColor = rgbToHex(analogousR1, analogousG1, analogousB1);
+    document.getElementById('harmonious-color-2').style.backgroundColor = rgbToHex(analogousR2, analogousG2, analogousB2);
+    document.getElementById('compare-color-preview').style.backgroundColor = rgbToHex(compR, compG, compB);
 }
 
 // Copy text to clipboard
