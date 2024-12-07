@@ -111,6 +111,7 @@ function generateHarmoniousColors(hex) {
     // Set the harmonious colours in the compare preview
     document.getElementById('harmonious-color-1').style.backgroundColor = rgbToHex(...complementary1);
     document.getElementById('harmonious-color-2').style.backgroundColor = rgbToHex(...complementary2);
+    document.getElementById('compare-color-preview').style.backgroundColor = hex;
 }
 
 // Convert Hex to RGB
