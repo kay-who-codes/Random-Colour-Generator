@@ -10,16 +10,24 @@
     <div class="container">
         <h1>Random Colour Generator</h1>
         <div id="color-preview" class="color-preview"></div>
+        
+        <button id="generate-color" onclick="generateRandomColor()">Generate Random Colour</button>
+
         <p><strong>Colour Name:</strong> <span id="color-name">None</span></p>
         <p><strong>Hex Code:</strong> <span id="hex-code">None</span></p>
+        <p><strong>RGB:</strong> <span id="rgb">None</span></p>
 
         <div class="buttons">
             <button onclick="copyText('color-name')">Copy Colour Name</button>
             <button onclick="copyText('hex-code')">Copy Hex Code</button>
             <button onclick="copyText('rgb')">Copy RGB</button>
         </div>
+    </div>
 
-        <button id="generate-color" onclick="generateRandomColor()">Generate Random Colour</button>
+    <!-- Dark Mode Toggle -->
+    <div class="theme-toggle">
+        <label for="theme-switcher" class="toggle-label">🌙/☀️</label>
+        <input type="checkbox" id="theme-switcher" onchange="toggleTheme()">
     </div>
 
     <script src="script.js"></script>
