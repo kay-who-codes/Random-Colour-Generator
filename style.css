@@ -75,6 +75,15 @@ button:active {
     background-color: #388e3c;
 }
 
+/* Specific Styles for "Generate Random Colour" Button */
+#generate-color {
+    background-color: #005f8d;
+}
+
+#generate-color:hover {
+    background-color: #004c75;
+}
+
 /* Dark Mode Button Styles */
 body.dark-mode button {
     background-color: #555;
@@ -85,27 +94,10 @@ body.dark-mode button:hover {
     background-color: #666;
 }
 
-/* Specific Styles for "Generate Random Colour" Button */
-#generate-color {
-    background-color: #005f8d;
-}
-
-#generate-color:hover {
-    background-color: #004c75;
-}
-
-/* Styles for Buttons within the "buttons" container */
-.buttons button {
-    background-color: #2196F3;
-}
-
-.buttons button:hover {
-    background-color: #1976D2;
-}
-
 /* Theme Toggle Button Styles */
 .theme-toggle {
     margin-top: 60px;
+    margin-bottom: 60px; /* Adds space between the content and the button */
 }
 
 #theme-switcher {
@@ -114,16 +106,24 @@ body.dark-mode button:hover {
 }
 
 .toggle-label {
-    background-color: #2196F3;
-    color: white;
+    background-color: transparent;
+    color: #333;
+    border: 2px solid #333;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
     font-size: 18px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 body.dark-mode .toggle-label {
-    background-color: #888;
+    background-color: #333;
+    color: #fff;
+    border-color: #fff;
+}
+
+body.dark-mode .toggle-label:hover {
+    background-color: #444;
 }
 
 /* Adjusted for better visibility */
