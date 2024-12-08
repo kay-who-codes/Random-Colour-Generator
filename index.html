@@ -7,18 +7,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Random Colour Generator</h1>
+    <div class="container" id="primary-colour-container">
+        <h1>Primary Colour</h1>
         <div id="color-preview" class="color-preview"></div>
         <p><strong>Colour Name:</strong> <span id="color-name">None</span></p>
         <p><strong>Hex Code:</strong> <span id="hex-code">None</span></p>
-            <button id="generate-color" onclick="generateRandomColor()">Generate Random Colour</button>
-
-
+        <button id="generate-color" onclick="generateRandomColor()">Generate Random Colour</button>
         <div class="buttons">
-            <button onclick="copyText('color-name')">Copy Colour Name</button>
-            <button onclick="copyText('hex-code')">Copy Hex Code</button>
-            <button onclick="copyText('rgb')">Copy RGB</button>
+            <button id="copy-color-name" onclick="copyText('color-name')">Colour: None</button>
+            <button id="copy-hex" onclick="copyText('hex-code')">Hex: None</button>
+            <button id="copy-rgb" onclick="copyText('rgb')">RGB: None</button>
+        </div>
+    </div>
+
+    <div class="container" id="secondary-colour-1">
+        <h1>Harmonious Colour 1</h1>
+        <div class="color-preview" id="harmonious-preview-1"></div>
+        <p><strong>Colour Name:</strong> <span id="harmonious-name-1">None</span></p>
+        <p><strong>Hex Code:</strong> <span id="harmonious-hex-1">None</span></p>
+        <div class="buttons">
+            <button id="copy-harmonious-name-1" onclick="copyText('harmonious-name-1')">Colour: None</button>
+            <button id="copy-harmonious-hex-1" onclick="copyText('harmonious-hex-1')">Hex: None</button>
+        </div>
+    </div>
+
+    <div class="container" id="secondary-colour-2">
+        <h1>Harmonious Colour 2</h1>
+        <div class="color-preview" id="harmonious-preview-2"></div>
+        <p><strong>Colour Name:</strong> <span id="harmonious-name-2">None</span></p>
+        <p><strong>Hex Code:</strong> <span id="harmonious-hex-2">None</span></p>
+        <div class="buttons">
+            <button id="copy-harmonious-name-2" onclick="copyText('harmonious-name-2')">Colour: None</button>
+            <button id="copy-harmonious-hex-2" onclick="copyText('harmonious-hex-2')">Hex: None</button>
         </div>
     </div>
 
